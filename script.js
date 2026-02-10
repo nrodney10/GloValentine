@@ -194,6 +194,7 @@
     if(activeStep?.dataset.step === 'letter' && !letterObserver){
       showQuestionModal();
     }
+    document.body.classList.toggle('gallery-fullscreen', activeStep?.dataset.step === 'gallery');
     syncMusic();
   }
 
