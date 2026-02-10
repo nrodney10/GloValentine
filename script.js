@@ -56,14 +56,17 @@
     tryNext();
   }
 
-  for(let i=1;i<=MAX_TRIES;i++){
-    const candidates = [];
-    IMAGE_BASES.forEach((base)=>{
-      IMAGE_EXTS.forEach((ext)=>{
-        candidates.push(`${base}/photo${i}.${ext}`);
+  const wantsSlides = !!(slidesContainer || finalSlidesContainer);
+  if(wantsSlides){
+    for(let i=1;i<=MAX_TRIES;i++){
+      const candidates = [];
+      IMAGE_BASES.forEach((base)=>{
+        IMAGE_EXTS.forEach((ext)=>{
+          candidates.push(`${base}/photo${i}.${ext}`);
+        });
       });
-    });
-    loadFirstAvailableImage(candidates);
+      loadFirstAvailableImage(candidates);
+    }
   }
 
   function showSlide(idx){
@@ -84,17 +87,19 @@
   const finalPrevBtn = document.getElementById('final-prev');
   const finalNextBtn = document.getElementById('final-next');
 
-  prevBtn.addEventListener('click',()=>goSlide(-1));
-  nextBtn.addEventListener('click',()=>goSlide(1));
-  finalPrevBtn.addEventListener('click',()=>goSlide(-1));
-  finalNextBtn.addEventListener('click',()=>goSlide(1));
+  if(prevBtn){ prevBtn.addEventListener('click',()=>goSlide(-1)); }
+  if(nextBtn){ nextBtn.addEventListener('click',()=>goSlide(1)); }
+  if(finalPrevBtn){ finalPrevBtn.addEventListener('click',()=>goSlide(-1)); }
+  if(finalNextBtn){ finalNextBtn.addEventListener('click',()=>goSlide(1)); }
 
-  setInterval(()=>{
-    if(slideImgs.length>0){
-      current = (current+1) % slideImgs.length;
-      showSlide(current);
-    }
-  },5000);
+  if(wantsSlides){
+    setInterval(()=>{
+      if(slideImgs.length>0){
+        current = (current+1) % slideImgs.length;
+        showSlide(current);
+      }
+    },5000);
+  }
 
   function getValentinesInfo(now){
     const year = now.getFullYear();
@@ -131,11 +136,15 @@
   updateCountdown();
   setInterval(updateCountdown,1000);
 
-  startBtn.addEventListener('click',async()=>{
-    overlay.classList.add('hidden');
-    try{ await music.play(); }catch(e){}
-    modal.classList.remove('hidden');
-  });
+  if(startBtn && overlay){
+    startBtn.addEventListener('click',async()=>{
+      overlay.classList.add('hidden');
+      if(music){
+        try{ await music.play(); }catch(e){}
+      }
+      if(modal){ modal.classList.remove('hidden'); }
+    });
+  }
 
   function moveNoButtonRandom(){
     if(!buttonsWrap) return;
@@ -160,23 +169,33 @@
     moveNoButtonRandom();
   }
 
-  noBtn.addEventListener('mouseenter',dodgeNo);
-  noBtn.addEventListener('click',(e)=>{ e.preventDefault(); dodgeNo(); });
-  noBtn.addEventListener('touchstart',dodgeNo,{passive:true});
+  if(noBtn){
+    noBtn.addEventListener('mouseenter',dodgeNo);
+    noBtn.addEventListener('click',(e)=>{ e.preventDefault(); dodgeNo(); });
+    noBtn.addEventListener('touchstart',dodgeNo,{passive:true});
+  }
 
-  yesBtn.addEventListener('click',()=>{
-    modal.classList.add('hidden');
-    final.classList.remove('hidden');
-    final.setAttribute('aria-hidden','false');
-    try{ video.play(); }catch(e){}
-    final.scrollIntoView({behavior:'smooth',block:'center'});
-  });
+  if(yesBtn){
+    yesBtn.addEventListener('click',()=>{
+      if(modal){ modal.classList.add('hidden'); }
+      if(final){
+        final.classList.remove('hidden');
+        final.setAttribute('aria-hidden','false');
+        final.scrollIntoView({behavior:'smooth',block:'center'});
+      }
+      if(video){
+        try{ video.play(); }catch(e){}
+      }
+    });
+  }
 
   function openFinalMode(){
     if(!finalMode) return;
     finalMode.classList.remove('hidden');
     finalMode.setAttribute('aria-hidden','false');
-    try{ music.play(); }catch(e){}
+    if(music){
+      try{ music.play(); }catch(e){}
+    }
   }
 
   function closeFinalMode(){

@@ -1,31 +1,31 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Will you be my Valentine?</title>
+  <title>Glo Valentine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div id="start-overlay" class="overlay">
-    <div class="overlay-content">
-      <h1>Will you be my Valentine?</h1>
-      <p>Tap to start the surprise.</p>
-      <button id="start-btn" class="primary">Open</button>
-    </div>
-  </div>
-
   <main class="page">
     <header class="reveal" style="--delay: 0ms;">
+      <nav class="site-nav">
+        <div class="brand">Glo Valentine</div>
+        <div class="nav-links">
+          <a class="nav-link active" href="index.html">Intro</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="timeline.html">Timeline</a>
+          <a class="nav-link" href="letter.html">Letter</a>
+        </div>
+      </nav>
       <div class="countdown" aria-live="polite">
         <span id="countdown-label" class="countdown-label">Valentine's Day in</span>
         <span id="countdown-value" class="countdown-value">...</span>
       </div>
-      <h2 class="title">Will you be my Valentine?</h2>
+      <h1 class="title">Will you be my Valentine?</h1>
       <p class="subtitle">A tiny timeline, a love letter, and the soundtrack to our story.</p>
     </header>
 
@@ -38,85 +38,8 @@
           Your browser doesn't support the video tag.
         </video>
       </div>
-
-      <div class="slideshow">
-        <div id="slides" class="slides">
-          <!-- Put images in assets/images/ and they will be used automatically -->
-        </div>
-        <div class="controls">
-          <button id="prev" class="ghost">Prev</button>
-          <button id="next" class="ghost">Next</button>
-        </div>
-      </div>
     </section>
-
-    <section class="timeline reveal" style="--delay: 240ms;">
-      <div class="timeline-header">
-        <h3>Our timeline</h3>
-        <p>Little moments that made us "us".</p>
-      </div>
-      <ol class="timeline-list">
-        <li>
-          <span class="date">June 12, 2023</span>
-          <p>First coffee that turned into a five-hour date.</p>
-        </li>
-        <li>
-          <span class="date">August 3, 2023</span>
-          <p>That late-night drive with the windows down.</p>
-        </li>
-        <li>
-          <span class="date">December 24, 2023</span>
-          <p>Our favorite holiday lights and hot chocolate.</p>
-        </li>
-        <li>
-          <span class="date">May 18, 2024</span>
-          <p>The day you said you felt like home.</p>
-        </li>
-      </ol>
-    </section>
-
-    <audio id="bg-music" preload="auto" loop>
-      <source src="valepic/music.mp3" type="audio/mpeg">
-      <source src="assets/music.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="question-modal" class="modal hidden">
-      <div class="modal-content">
-        <h3>Will you be my Valentine?</h3>
-        <div class="modal-buttons">
-          <button id="yes-btn" class="yes">Yes &lt;3</button>
-          <button id="no-btn" class="no">No</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="final" class="final hidden" aria-hidden="true">
-      <h2>Yay!</h2>
-      <div class="love-letter">
-        <h3>Love letter</h3>
-        <p>You are my favorite person, my calm, and my best adventure. Every day with you feels like a little celebration.</p>
-        <p>Thank you for being you. I love you more than all the stars we have ever counted.</p>
-      </div>
-      <div class="final-actions">
-        <button id="final-play" class="primary">Play our song + slideshow</button>
-      </div>
-    </div>
   </main>
-
-  <div id="final-mode" class="final-mode hidden" aria-hidden="true">
-    <div class="final-stage">
-      <div class="final-top">
-        <h3>Play our song + slideshow</h3>
-        <button id="final-exit" class="ghost">Return</button>
-      </div>
-      <div id="final-slides" class="slides final-slides"></div>
-      <div class="controls">
-        <button id="final-prev" class="ghost">Prev</button>
-        <button id="final-next" class="ghost">Next</button>
-      </div>
-      <p class="final-hint">Tip: click outside this card or press Escape to close.</p>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
