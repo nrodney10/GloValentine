@@ -14,6 +14,7 @@
   const finalPlayBtn = document.getElementById('final-play');
   const finalMode = document.getElementById('final-mode');
   const finalExitBtn = document.getElementById('final-exit');
+  const letterEnd = document.getElementById('letter-end');
 
   const slidesContainer = document.getElementById('slides');
   const finalSlidesContainer = document.getElementById('final-slides');
@@ -144,6 +145,25 @@
   let stepIndex = 0;
   let experienceStarted = false;
   let modalShown = false;
+  let letterObserver = null;
+
+  function showQuestionModal(){
+    if(modalShown || !modal || !experienceStarted) return;
+    modal.classList.remove('hidden');
+    modalShown = true;
+  }
+
+  if(letterEnd && 'IntersectionObserver' in window){
+    letterObserver = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          showQuestionModal();
+          if(letterObserver){ letterObserver.disconnect(); }
+        }
+      });
+    }, { threshold: 0.6 });
+    letterObserver.observe(letterEnd);
+  }
 
   function updateStepUI(){
     if(steps.length===0) return;
@@ -159,9 +179,8 @@
       const activeKey = activeStep?.dataset.step || '';
       stepTabs.forEach((btn)=>btn.classList.toggle('active', btn.dataset.stepBtn === activeKey));
     }
-    if(experienceStarted && !modalShown && activeStep?.dataset.step === 'letter' && modal){
-      modal.classList.remove('hidden');
-      modalShown = true;
+    if(activeStep?.dataset.step === 'letter' && !letterObserver){
+      showQuestionModal();
     }
   }
 

@@ -22,26 +22,20 @@
     <header class="hero">
       <nav class="site-nav">
         <div class="brand">Glo Valentine</div>
-        <div class="nav-links step-tabs">
-          <button class="nav-link active" type="button" data-step-btn="intro">Intro</button>
-          <button class="nav-link" type="button" data-step-btn="gallery">Gallery</button>
-          <button class="nav-link" type="button" data-step-btn="timeline">Timeline</button>
-          <button class="nav-link" type="button" data-step-btn="letter">Letter</button>
-        </div>
       </nav>
       <div class="countdown" aria-live="polite">
         <span id="countdown-label" class="countdown-label">Valentine's Day in</span>
         <span id="countdown-value" class="countdown-value">...</span>
       </div>
       <h1 class="title">Will you be my Valentine?</h1>
-      <p class="subtitle">A tiny timeline, a love letter, and the soundtrack to our story.</p>
+      <p class="subtitle">A gallery, a love letter, and the soundtrack to our story.</p>
     </header>
 
     <section class="step active" data-step="intro" data-step-label="Intro">
       <div class="media">
-        <div class="video-wrap">
+        <div class="video-wrap">
           <video id="proposal-video" controls preload="metadata">
-            <source src="valepic/WhatsApp%20Video%202026-02-10%20at%2019.45.10.mp4" type="video/mp4">
+            <source src="valepic/WhatsApp%20Video%202026-02-10%20at%2019.45.10.mp4" type="video/mp4">
             <source src="valepic/video.mp4" type="video/mp4">
             <source src="valepic/IMG_7759.MOV" type="video/quicktime">
             <source src="assets/video.mp4" type="video/mp4">
@@ -64,38 +58,30 @@
       </div>
     </section>
 
-    <section class="step" data-step="timeline" data-step-label="Timeline">
-      <div class="timeline">
-        <div class="timeline-header">
-          <h3>Our timeline</h3>
-          <p>Little moments that made us "us".</p>
-        </div>
-        <ol class="timeline-list">
-          <li>
-            <span class="date">June 12, 2023</span>
-            <p>First coffee that turned into a five-hour date.</p>
-          </li>
-          <li>
-            <span class="date">August 3, 2023</span>
-            <p>That late-night drive with the windows down.</p>
-          </li>
-          <li>
-            <span class="date">December 24, 2023</span>
-            <p>Our favorite holiday lights and hot chocolate.</p>
-          </li>
-          <li>
-            <span class="date">May 18, 2024</span>
-            <p>The day you said you felt like home.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
     <section class="step" data-step="letter" data-step-label="Letter">
       <div class="letter-intro">
         <h2 class="section-title">Love Letter</h2>
-        <p class="section-subtitle">Say yes to open the note and the final surprise.</p>
+        <p class="section-subtitle">Read this, then answer the question.</p>
       </div>
+
+      <div class="love-letter">
+        <p>My love, Gloria,</p>
+        <p>I still remember the day I met you how everything felt simple and natural from the start. I didn’t know then just how important you would become to me, but something about you stayed with me. Talking to you felt easy. Being around you felt right. And little by little, you became someone I genuinely cared about.</p>
+        <p>What makes us special to me isn’t just the happy moments it’s the journey we’ve taken together. We didn’t just fall into love, we grew into it. We learned each other, understood each other better over time, and chose to grow instead of giving up.</p>
+        <p>There were moments when life tested me especially when I got sick and felt weak, tired, and honestly lost hope for a while. I wasn’t myself. I wasn’t strong. Some days were just hard. But through all of that, you were there patient, caring, and steady in ways I will never forget.</p>
+        <p>You showed me what real love looks like in the most real life way. Even when I was struggling with embarrassing, uncomfortable moments (couldnt poop💩) times when I felt helpless, you didn’t pull away. You stayed. You helped me. You made me feel safe and supported instead of ashamed. That kind of care stays with a person forever.</p>
+        <p>And then there was that moment the day you made me rice and chicken with fruit salad, even the sadza you brought on new years eve. I’m not even exaggerating when I say this, that was the moment I thought, yeah this is my person. Not just because the food was amazing (it really was 😌), but because of the love and effort you put into it. My heart was already yours, the food just made it official.</p>
+        <p>Gloria, what I appreciate most about you is how genuine your love is. You love with patience, kindness, and so much heart. You make me feel safe, valued, and accepted exactly as I am even on my worst days. You inspire me to grow, not through pressure, but through love.</p>
+        <p>I love how we’ve learned to communicate better, how we’ve become more patient with each other, and how we’ve grown stronger through understanding instead of ego. We’re not perfect, but we’re real. And what we’re building together feels honest, warm, and worth protecting.</p>
+        <p>From now on, I want us to be even better together. I want us to listen more, communicate more clearly, and always choose respect and understanding. I want us to keep learning each other’s needs, loving each other in the ways that matter most, and growing side by side. Not by being perfect but by being intentional.</p>
+        <p>I want us to protect what we have. To laugh more. To be patient on hard days. To celebrate each other on good days. To keep choosing love, even when it takes effort. Especially when it takes effort.</p>
+        <p>That’s why I wanted to do this a little early. Not because it’s Valentine’s Day yet, but because you deserve to be appreciated before the day even arrives.</p>
+        <p>When Valentine’s Day comes, there’s only one person I want to celebrate love with the person who has grown with me, stood with me, and continues to walk this journey with me.</p>
+        <p>So from a heart that truly values you, cherishes you, and is excited about everything we’re still building together, I want to ask you something simple, but deeply meaningful to me,</p>
+        <p>Gloria, will you be my Valentine?🙈❤️</p>
+      </div>
+
+      <div id="letter-end" class="letter-end" aria-hidden="true"></div>
 
       <div id="question-modal" class="modal hidden">
         <div class="modal-content">
@@ -122,7 +108,7 @@
 
     <div class="step-controls">
       <button id="step-prev" class="ghost" type="button">Prev</button>
-      <div id="step-label" class="step-label">Step 1 of 4 � Intro</div>
+      <div id="step-label" class="step-label">Step 1 of 3 · Intro</div>
       <button id="step-next" class="primary" type="button">Next</button>
     </div>
   </main>
@@ -149,10 +135,10 @@
 
   <script src="script.js"></script>
 </body>
-</html>
-
-
-
-
-
-
+</html>
+
+
+
+
+
+

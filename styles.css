@@ -337,6 +337,7 @@ video{width:100%;border-radius:12px;background:#12060b;box-shadow:var(--soft-sha
 .final-top h3{margin:0;font-family:"Fraunces",serif}
 .final-slides{height:360px}
 .final-hint{margin:0;color:var(--muted);text-align:center;font-size:0.85rem}
+.letter-end{height:1px}
 
 .reveal{
   opacity:0;
