@@ -136,18 +136,73 @@
   updateCountdown();
   setInterval(updateCountdown,1000);
 
+  const steps = Array.from(document.querySelectorAll('[data-step]'));
+  const stepPrevBtn = document.getElementById('step-prev');
+  const stepNextBtn = document.getElementById('step-next');
+  const stepLabel = document.getElementById('step-label');
+  const stepTabs = Array.from(document.querySelectorAll('[data-step-btn]'));
+  let stepIndex = 0;
+  let experienceStarted = false;
+  let modalShown = false;
+
+  function updateStepUI(){
+    if(steps.length===0) return;
+    steps.forEach((step,i)=>step.classList.toggle('active', i===stepIndex));
+    const activeStep = steps[stepIndex];
+    const label = activeStep?.dataset.stepLabel || activeStep?.dataset.step || '';
+    if(stepLabel){
+      stepLabel.textContent = `Step ${stepIndex+1} of ${steps.length} · ${label}`;
+    }
+    if(stepPrevBtn){ stepPrevBtn.disabled = stepIndex===0; }
+    if(stepNextBtn){ stepNextBtn.disabled = stepIndex===steps.length-1; }
+    if(stepTabs.length){
+      const activeKey = activeStep?.dataset.step || '';
+      stepTabs.forEach((btn)=>btn.classList.toggle('active', btn.dataset.stepBtn === activeKey));
+    }
+    if(experienceStarted && !modalShown && activeStep?.dataset.step === 'letter' && modal){
+      modal.classList.remove('hidden');
+      modalShown = true;
+    }
+  }
+
+  function goStep(delta){
+    if(steps.length===0) return;
+    const nextIndex = Math.min(steps.length-1, Math.max(0, stepIndex + delta));
+    if(nextIndex !== stepIndex){
+      stepIndex = nextIndex;
+      updateStepUI();
+    }
+  }
+
+  if(stepPrevBtn){ stepPrevBtn.addEventListener('click',()=>goStep(-1)); }
+  if(stepNextBtn){ stepNextBtn.addEventListener('click',()=>goStep(1)); }
+  if(stepTabs.length){
+    stepTabs.forEach((btn)=>{
+      btn.addEventListener('click',()=>{
+        const idx = steps.findIndex((step)=>step.dataset.step === btn.dataset.stepBtn);
+        if(idx >= 0){
+          stepIndex = idx;
+          updateStepUI();
+        }
+      });
+    });
+  }
+
+  updateStepUI();
+
   if(startBtn && overlay){
     startBtn.addEventListener('click',async()=>{
       overlay.classList.add('hidden');
+      experienceStarted = true;
       if(music){
         try{ await music.play(); }catch(e){}
       }
-      if(modal){ modal.classList.remove('hidden'); }
+      updateStepUI();
     });
   }
 
   function moveNoButtonRandom(){
-    if(!buttonsWrap) return;
+    if(!buttonsWrap || !noBtn) return;
     const wrapRect = buttonsWrap.getBoundingClientRect();
     const maxX = Math.max(0, wrapRect.width - noBtn.offsetWidth - 12);
     const maxY = Math.max(0, wrapRect.height - noBtn.offsetHeight - 12);

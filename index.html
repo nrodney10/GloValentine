@@ -10,15 +10,23 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="start-overlay" class="overlay">
+    <div class="overlay-content">
+      <h1>Will you be my Valentine?</h1>
+      <p>Tap to start the surprise.</p>
+      <button id="start-btn" class="primary" type="button">Open</button>
+    </div>
+  </div>
+
   <main class="page">
-    <header class="reveal" style="--delay: 0ms;">
+    <header class="hero">
       <nav class="site-nav">
         <div class="brand">Glo Valentine</div>
-        <div class="nav-links">
-          <a class="nav-link active" href="index.html">Intro</a>
-          <a class="nav-link" href="gallery.html">Gallery</a>
-          <a class="nav-link" href="timeline.html">Timeline</a>
-          <a class="nav-link" href="letter.html">Letter</a>
+        <div class="nav-links step-tabs">
+          <button class="nav-link active" type="button" data-step-btn="intro">Intro</button>
+          <button class="nav-link" type="button" data-step-btn="gallery">Gallery</button>
+          <button class="nav-link" type="button" data-step-btn="timeline">Timeline</button>
+          <button class="nav-link" type="button" data-step-btn="letter">Letter</button>
         </div>
       </nav>
       <div class="countdown" aria-live="polite">
@@ -29,17 +37,114 @@
       <p class="subtitle">A tiny timeline, a love letter, and the soundtrack to our story.</p>
     </header>
 
-    <section class="media reveal" style="--delay: 140ms;">
-      <div class="video-wrap">
-        <video id="proposal-video" controls preload="metadata">
-          <source src="valepic/IMG_7759.MOV" type="video/quicktime">
-          <source src="valepic/video.mp4" type="video/mp4">
-          <source src="assets/video.mp4" type="video/mp4">
-          Your browser doesn't support the video tag.
-        </video>
+    <section class="step active" data-step="intro" data-step-label="Intro">
+      <div class="media">
+        <div class="video-wrap">
+          <video id="proposal-video" controls preload="metadata">
+            <source src="valepic/IMG_7759.MOV" type="video/quicktime">
+            <source src="valepic/video.mp4" type="video/mp4">
+            <source src="assets/video.mp4" type="video/mp4">
+            Your browser doesn't support the video tag.
+          </video>
+        </div>
       </div>
     </section>
+
+    <section class="step" data-step="gallery" data-step-label="Gallery">
+      <div class="slideshow">
+        <div id="slides" class="slides">
+          <!-- Put images in valepic/ and they will be used automatically -->
+        </div>
+        <div class="controls">
+          <button id="prev" class="ghost" type="button">Prev</button>
+          <button id="next" class="ghost" type="button">Next</button>
+        </div>
+        <p class="page-note">Auto-plays every 5 seconds.</p>
+      </div>
+    </section>
+
+    <section class="step" data-step="timeline" data-step-label="Timeline">
+      <div class="timeline">
+        <div class="timeline-header">
+          <h3>Our timeline</h3>
+          <p>Little moments that made us "us".</p>
+        </div>
+        <ol class="timeline-list">
+          <li>
+            <span class="date">June 12, 2023</span>
+            <p>First coffee that turned into a five-hour date.</p>
+          </li>
+          <li>
+            <span class="date">August 3, 2023</span>
+            <p>That late-night drive with the windows down.</p>
+          </li>
+          <li>
+            <span class="date">December 24, 2023</span>
+            <p>Our favorite holiday lights and hot chocolate.</p>
+          </li>
+          <li>
+            <span class="date">May 18, 2024</span>
+            <p>The day you said you felt like home.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="step" data-step="letter" data-step-label="Letter">
+      <div class="letter-intro">
+        <h2 class="section-title">Love Letter</h2>
+        <p class="section-subtitle">Say yes to open the note and the final surprise.</p>
+      </div>
+
+      <div id="question-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3>Will you be my Valentine?</h3>
+          <div class="modal-buttons">
+            <button id="yes-btn" class="yes" type="button">Yes &lt;3</button>
+            <button id="no-btn" class="no" type="button">No</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="final" class="final hidden" aria-hidden="true">
+        <h2>Yay!</h2>
+        <div class="love-letter">
+          <h3>Love letter</h3>
+          <p>You are my favorite person, my calm, and my best adventure. Every day with you feels like a little celebration.</p>
+          <p>Thank you for being you. I love you more than all the stars we have ever counted.</p>
+        </div>
+        <div class="final-actions">
+          <button id="final-play" class="primary" type="button">Play our song + slideshow</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="step-controls">
+      <button id="step-prev" class="ghost" type="button">Prev</button>
+      <div id="step-label" class="step-label">Step 1 of 4 · Intro</div>
+      <button id="step-next" class="primary" type="button">Next</button>
+    </div>
   </main>
+
+  <audio id="bg-music" preload="auto" loop>
+    <source src="valepic/music.mp3" type="audio/mpeg">
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="final-mode" class="final-mode hidden" aria-hidden="true">
+    <div class="final-stage">
+      <div class="final-top">
+        <h3>Play our song + slideshow</h3>
+        <button id="final-exit" class="ghost" type="button">Return</button>
+      </div>
+      <div id="final-slides" class="slides final-slides"></div>
+      <div class="controls">
+        <button id="final-prev" class="ghost" type="button">Prev</button>
+        <button id="final-next" class="ghost" type="button">Next</button>
+      </div>
+      <p class="final-hint">Tip: click outside this card or press Escape to close.</p>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

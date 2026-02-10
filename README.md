@@ -1,11 +1,11 @@
 ﻿# Will you be my Valentine? -- Webpage
 
-This project is a single static webpage you can open in a browser. It shows a slideshow of your photos while music plays, includes your proposal video, a countdown to Valentine's Day, a memory timeline, and a playful modal where the "No" button shrinks and dodges clicks. After "Yes," a custom love letter appears with a final "Play our song + slideshow" mode.
+This project is a single static webpage you can open in a browser. It moves through sections with Next/Prev buttons: intro + video, gallery slideshow, timeline, and love letter. After "Yes," a custom love letter appears with a final "Play our song + slideshow" mode.
 
 How to use
-- Place your personal video at: `valentine/valepic/video.mp4` (preferred). Fallback: `valentine/assets/video.mp4`.
+- Place your personal video at: `valentine/valepic/IMG_7759.MOV` (preferred), or `valentine/valepic/video.mp4`. Fallback: `valentine/assets/video.mp4`.
 - Place background music at: `valentine/valepic/music.mp3` (preferred). Fallback: `valentine/assets/music.mp3`.
-- Add photos named `photo1.jpg`, `photo2.jpg`, ... up to `photo24.*` in `valentine/valepic/` (preferred). Fallback: `valentine/assets/images/`.
+- Add photos named `photo1.jpg`, `photo2.jpg`, ... up to `photo50.*` in `valentine/valepic/` (preferred). Fallback: `valentine/assets/images/`.
   - Supported extensions: `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif` (the script auto-loads the first match for each number).
 
 Files
@@ -13,7 +13,7 @@ Files
 - `styles.css` -- styles
 - `script.js` -- JavaScript behaviors
 
-Open `valentine/index.html` in a browser (double-click or serve via a simple static server). Click the big "Open" button to start the music and reveal the question modal (this user gesture allows audio playback).
+Open `valentine/index.html` in a browser (double-click or serve via a simple static server). Click the big "Open" button to start the music and begin the experience (this user gesture allows audio playback). Use Next/Prev to move between sections.
 
 Customizing
 - Edit the timeline entries and the love letter text in `index.html`.
