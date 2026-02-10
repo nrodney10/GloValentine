@@ -147,6 +147,18 @@
   let modalShown = false;
   let letterObserver = null;
 
+  function syncMusic(){
+    if(!music) return;
+    const activeStep = steps[stepIndex];
+    const inGallery = activeStep?.dataset.step === 'gallery';
+    const finalOpen = finalMode && !finalMode.classList.contains('hidden');
+    if(experienceStarted && (inGallery || finalOpen)){
+      try{ music.play(); }catch(e){}
+    }else{
+      music.pause();
+    }
+  }
+
   function showQuestionModal(){
     if(modalShown || !modal || !experienceStarted) return;
     modal.classList.remove('hidden');
@@ -182,6 +194,7 @@
     if(activeStep?.dataset.step === 'letter' && !letterObserver){
       showQuestionModal();
     }
+    syncMusic();
   }
 
   function goStep(delta){
@@ -213,9 +226,6 @@
     startBtn.addEventListener('click',async()=>{
       overlay.classList.add('hidden');
       experienceStarted = true;
-      if(music){
-        try{ await music.play(); }catch(e){}
-      }
       updateStepUI();
     });
   }
@@ -267,15 +277,14 @@
     if(!finalMode) return;
     finalMode.classList.remove('hidden');
     finalMode.setAttribute('aria-hidden','false');
-    if(music){
-      try{ music.play(); }catch(e){}
-    }
+    syncMusic();
   }
 
   function closeFinalMode(){
     if(!finalMode) return;
     finalMode.classList.add('hidden');
     finalMode.setAttribute('aria-hidden','true');
+    syncMusic();
   }
 
   if(finalPlayBtn){
